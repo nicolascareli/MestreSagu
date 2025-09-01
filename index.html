@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Mestre Sagu Oficial</title>
+    <meta name="description" content="Mestre Sagu — pop rock há 10 anos. Shows para eventos, bares, casamentos e festas. A melhor trilha para seu evento.">
+
+    <!-- Cor do tema (mobile) -->
+    <meta name="theme-color" content="#0b0b0d">
+
+    <!-- Bootstrap 5.3.3 (CSS) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-qN8C0..." crossorigin="anonymous">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Seu CSS -->
+    <link rel="stylesheet" href="./CSS/style.css">
+
+    <!-- Favicon (ajuste os caminhos/arquivos se tiver) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top nav-main navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">MESTRE SAGU</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Alternar navegação">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link active" href="#hero">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#agenda">Agenda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#fotos">Fotos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-light btn-sm fw-bolder" href="https://wa.me/5513996601951"><i class="bi bi-lightning-charge me-1"></i>Contratar a Banda</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- ============== Topo (HOME) ============== -->
+    <section id="hero" class="hero text-white">
+        <!-- Texto + logo em 3 colunas -->
+        <div class="container hero-overlay mt-banner">
+            <div class="hero-title d-flex justify-content-center align-items-center gap-0">
+                <h1 class="display-3 fw-bold m-0">MESTRE</h1>
+                <img src="./IMGS/LOGO - MESTRE SAGU - 2024 - 3.png" alt="hero-logo Mestre Sagu" class="hero-logo mx-2">
+                <h1 class="display-3 fw-bold m-0">SAGU</h1>
+            </div>
+        </div>
+
+        <!-- Foto da banda grudada no rodapé -->
+        <div class="hero-image">
+            <img src="./IMGS/banda-topo.png" alt="Banda Mestre Sagu" class="w-100 h-auto">
+        </div>
+    </section>
+    <!-- ============== tarja (HOME) ============== -->
+    <section class="cta-bar py-3">
+        <div class="container text-center">
+            <a href="https://wa.me/5513996601951" class="btn btn-light btn-sm fw-bolder"><i class="bi bi-lightning-charge me-1"></i>CONTRATE A BANDA</a>
+        </div>
+    </section>
+    <!-- ============== AGENDA (HOME) ============== -->
+    <section id="agenda" class="agenda-section p-2 mt-4">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <h5 class="m-0">Proximos Shows</h5>
+                <button class="btn btn-outline-light btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#agendaModal">
+        Agenda completa
+      </button>
+            </div>
+
+            <!-- DESKTOP (≥ md) — 3 próximos, estático -->
+            <div class="d-none d-md-block">
+                <div class="row g-3" id="agendaDesktopStatic">
+                    <!-- JS injeta 3 cards aqui -->
+                </div>
+            </div>
+
+            <!-- MOBILE (< md) — carrossel 1 por slide -->
+            <div id="agendaCarouselMobile" class="carousel slide d-md-none" data-bs-ride="carousel" data-bs-interval="6000" data-bs-touch="true">
+                <div class="carousel-indicators" id="agendaIndicatorsMobile">
+                    <!-- JS bolinhas -->
+                </div>
+                <div class="carousel-inner" id="agendaSlidesMobile">
+                    <!-- JS slides -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============== Sobre Nos (HOME) ============== -->
+    <section id="sobre" class="about-section py-5">
+        <div class="container">
+            <div class="row g-4 align-items-stretch">
+                <!-- Coluna 1: Sobre nós -->
+                <div class="col-12 col-lg-6">
+                    <article class="about-card h-100 p-4">
+                        <h2 class="mb-3"><i class="bi bi-people-fill me-2"></i>Sobre nós</h2>
+                        <p class="mb-3">
+                            Somos a <strong>Mestre Sagu</strong>, banda de pop rock com <strong>energia de palco</strong> e repertório que conversa com todos os públicos — de pizzarias a palcos de prefeitura, aniversários e casamentos.
+                        </p>
+                        <p class="mb-0">
+                            São <em>4 horas de show sem pausa</em>, arranjos próprios, presença de palco e interação com a galera. Nosso foco é entregar <strong>a melhor trilha para o seu evento</strong>.
+                        </p>
+                        <h2 class="mb-3 mt-5"><i class="bi bi-lightning-charge-fill me-2"></i>10 anos de banda</h2>
+                        <ul class="about-list">
+                            <li><strong>+10 anos</strong> na estrada, dezenas de cidades e palcos.</li>
+                            <li>Repertório pop rock com clássicos e hits atuais.</li>
+                            <li>Formato versátil para bares, eventos privados e públicos.</li>
+                            <li>Equipe profissional e pontual, som e logística redondos.</li>
+                        </ul>
+                        <p class="mb-0 text-muted">*Entre em contato para montar o setlist perfeito pro seu evento.</p>
+                    </article>
+                </div>
+
+                <!-- Coluna 2: 10 anos de banda -->
+                <div class="col-12 col-lg-6" id="musica">
+                    <article class="about-card h-100 p-4">
+                        <h2 class="mb-4 text-center">Ouça nossa música</h2>
+                        <div class="spotify-embed">
+                            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/7Hs5DSlRCHpO2LNHtJxdau?utm_source=generator" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        </div>
+                        <!-- CTA opcional -->
+                        <div class="text-center mt-3">
+                            <a class="btn btn-outline-light btn-sm" href="https://open.spotify.com/album/7Hs5DSlRCHpO2LNHtJxdau" target="_blank" rel="noopener">Abrir no Spotify</a>
+                        </div>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ==============  Integrantes (HOME) ============== -->
+    <section id="integrantes" class="members-section py-5">
+        <div class="container">
+            <h2 class="mb-4 text-center">Integrantes</h2>
+
+            <!-- DESKTOP/TABLET: grade 4 colunas -->
+            <div class="members-grid d-none d-md-grid">
+                <!-- Card 1 -->
+                <article class="member-card">
+                    <img src="./IMGS/gilson.png" alt="Nome do Integrante 1" class="member-avatar">
+                    <h3 class="member-name">Gilson Faria</h3>
+                    <p class="member-role">Voz & Baixo</p>
+                    <p class="member-bio">A banda começou a partir dele, e não, ele não é o Mestre Sagu! Será?</p>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="member-card">
+                    <img src="./IMGS/edi.png" alt="Nome do Integrante 2" class="member-avatar">
+                    <h3 class="member-name">Edi Camargo</h3>
+                    <p class="member-role">Voz & Guitarra</p>
+                    <p class="member-bio">Além de tocar ele ainda toma conta da nossa agenda e aguenta a banda nos ensaios!</p>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="member-card">
+                    <img src="./IMGS/nicolas.png" alt="Nome do Integrante 3" class="member-avatar">
+                    <h3 class="member-name">Nicolas Careli</h3>
+                    <p class="member-role">Vocal & Guitarra</p>
+                    <p class="member-bio">Apesar dos 18 anos de estrada, é o mais novo da banda!</p>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="member-card">
+                    <img src="./IMGS/pedrinho.png" alt="Nome do Integrante 4" class="member-avatar">
+                    <h3 class="member-name">Pedro Albano</h3>
+                    <p class="member-role">Voz & Bateria</p>
+                    <p class="member-bio">Das orquestras para o mundo do rock! Mistura sua atitude e elegância nas batidas!</p>
+                </article>
+            </div>
+
+            <!-- MOBILE: carrossel 1 por vez (sem setas, com bolinhas) -->
+            <div id="membersCarousel" class="carousel slide d-md-none" data-bs-ride="carousel" data-bs-interval="5500" data-bs-touch="true">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#membersCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Integrante 1"></button>
+                    <button type="button" data-bs-target="#membersCarousel" data-bs-slide-to="1" aria-label="Integrante 2"></button>
+                    <button type="button" data-bs-target="#membersCarousel" data-bs-slide-to="2" aria-label="Integrante 3"></button>
+                    <button type="button" data-bs-target="#membersCarousel" data-bs-slide-to="3" aria-label="Integrante 4"></button>
+                </div>
+
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <article class="member-card mx-3">
+                            <img src="assets/members/integrante1.jpg" alt="Nome do Integrante 1" class="member-avatar">
+                            <h3 class="member-name">Integrante 1</h3>
+                            <p class="member-role text-muted">Voz & Guitarra</p>
+                            <p class="member-bio">Release curto do integrante — trajetória, estilo e influência musical.</p>
+                        </article>
+                    </div>
+
+                    <div class="carousel-item">
+                        <article class="member-card mx-3">
+                            <img src="assets/members/integrante2.jpg" alt="Nome do Integrante 2" class="member-avatar">
+                            <h3 class="member-name">Integrante 2</h3>
+                            <p class="member-role text-muted">Baixo</p>
+                            <p class="member-bio">Release curto — presença de palco, groove e referências.</p>
+                        </article>
+                    </div>
+
+                    <div class="carousel-item">
+                        <article class="member-card mx-3">
+                            <img src="assets/members/integrante3.jpg" alt="Nome do Integrante 3" class="member-avatar">
+                            <h3 class="member-name">Integrante 3</h3>
+                            <p class="member-role text-muted">Bateria</p>
+                            <p class="member-bio">Release curto — pegada, dinâmica e experiência na estrada.</p>
+                        </article>
+                    </div>
+
+                    <div class="carousel-item">
+                        <article class="member-card mx-3">
+                            <img src="assets/members/integrante4.jpg" alt="Nome do Integrante 4" class="member-avatar">
+                            <h3 class="member-name">Integrante 4</h3>
+                            <p class="member-role text-muted">Teclados</p>
+                            <p class="member-bio">Release curto — timbres, arranjos e influências.</p>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Sem setas no mobile -->
+            </div>
+        </div>
+    </section>
+    <!-- ==============  Insta (HOME) ============== -->
+    <section id="fotos" class="gallery-section py-5">
+        <div class="container">
+            <div class="d-flex justify-content-center align-items-end mb-4">
+                <h5 class="me-3">Aquelas Fotos</h5>
+                <a href="https://instagram.com/mestresaguoficial"><button class="btn btn-outline-light btn-sm" type="button">Segue no Insta</button></a>
+            </div>
+
+            <div id="galleryCarousel" class="carousel slide px-2 py-2" data-bs-ride="carousel" data-bs-interval="4500" data-bs-touch="true">
+                <!-- Bolinhas -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="1"></button>
+                    <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="1" aria-label="2"></button>
+                    <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="2" aria-label="3"></button>
+                    <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="3" aria-label="4"></button>
+                    <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="4" aria-label="5"></button>
+                </div>
+
+                <!-- Slides (5 fotos) -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active text-center">
+                        <div class="gallery-frame">
+                            <img src="./IMGS/fotos/img05.png" class="gallery-img rounded" alt="Foto 1">
+                        </div>
+                    </div>
+                    <div class="carousel-item text-center">
+                        <div class="gallery-frame">
+                            <img src="./IMGS/fotos/img04.png" class="gallery-img rounded" alt="Foto 2">
+                        </div>
+                    </div>
+                    <div class="carousel-item text-center">
+                        <div class="gallery-frame">
+                            <img src="./IMGS/fotos/img03.png" class="gallery-img rounded" alt="Foto 3">
+                        </div>
+                    </div>
+                    <div class="carousel-item text-center">
+                        <div class="gallery-frame">
+                            <img src="./IMGS/fotos/img02.png" class="gallery-img rounded" alt="Foto 4">
+                        </div>
+                    </div>
+                    <div class="carousel-item text-center">
+                        <div class="gallery-frame">
+                            <img src="./IMGS/fotos/img01.png" class="gallery-img rounded" alt="Foto 5">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- sem setas -->
+            </div>
+        </div>
+    </section>
+    <!-- ==============  Contato (HOME) ============== -->
+    <section id="contato" class="contact-section mb-5">
+        <div class="container-fluid">
+            <h2 class="mb-4 text-center">Contato para Orçamentos</h2>
+
+            <div class="row justify-content-center py-3 px-3">
+                <div class="col-12 col-lg-8">
+                    <div class="contact-card p-4">
+                        <!-- Alertas -->
+                        <div id="contactSuccess" class="alert alert-success d-none" role="alert">
+                            Recebido! Em breve a gente te responde no WhatsApp ou e-mail. 🤘
+                        </div>
+                        <div id="contactError" class="alert alert-danger d-none" role="alert">
+                            Opa, deu algo errado no envio. Tenta novamente ou chama no WhatsApp.
+                        </div>
+
+                        <!-- Formulário -->
+                        <form id="contactForm" action="https://formspree.io/f/xpwjljqn" method="POST">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <!-- Nome -->
+                                        <div class="col-md-5">
+                                            <label for="nome" class="form-label">Nome*</label>
+                                            <input type="text" class="form-control" id="nome" name="nome" required>
+                                        </div>
+
+                                        <!-- WhatsApp -->
+                                        <div class="col-md-3">
+                                            <label for="whats" class="form-label">Seu WhatsApp*</label>
+                                            <input type="tel" class="form-control" id="whats" name="whatsapp" placeholder="(DDD) 9 9660-1951" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-12 mt-3">
+                                            <h5>Dados do Evento</h5>
+                                        </div>
+                                        <!-- Horas de evento -->
+                                        <div class="col-md-4">
+                                            <label for="horas" class="form-label">Horas de evento*</label>
+                                            <select class="form-select" id="horas" name="horas" required>
+                                                <option value="" selected disabled>Selecione</option>
+                                                <option>2 horas</option>
+                                                <option>3 horas</option>
+                                                <option>4 horas</option>
+                                            </select>
+                                        </div>
+                                        <!-- Data -->
+                                        <div class="col-md-4">
+                                            <label for="data" class="form-label">Data do evento*</label>
+                                            <input type="date" class="form-control" id="data" name="data" required>
+                                        </div>
+
+                                        <!-- Horário -->
+                                        <div class="col-md-4">
+                                            <label for="hora" class="form-label">Horário do evento*</label>
+                                            <input type="time" class="form-control" id="hora" name="hora" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="row">
+                                        <!-- CEP -->
+                                        <div class="col-md-4">
+                                            <label for="cep" class="form-label">CEP*</label>
+                                            <input type="text" class="form-control" id="cep" name="cep" placeholder="00000-000" required>
+                                        </div>
+
+                                        <!-- Estado -->
+                                        <div class="col-md-4 mt-1 mb-1">
+                                            <label for="estado" class="form-label">Estado*</label>
+                                            <input type="text" class="form-control" id="estado" name="estado" required>
+                                        </div>
+
+                                        <!-- Cidade -->
+                                        <div class="col-md-4 mt-1 mb-1">
+                                            <label for="cidade" class="form-label">Cidade*</label>
+                                            <input type="text" class="form-control" id="cidade" name="cidade" required>
+                                        </div>
+
+                                        <!-- Endereço -->
+                                        <div class="col-md-8 mt-1 mb-1">
+                                            <label for="endereco" class="form-label">Endereço*</label>
+                                            <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Rua, número, bairro" required>
+                                        </div>
+
+                                        <!-- Local do evento -->
+                                        <div class="col-md-4 mt-1 mb-1">
+                                            <label for="local" class="form-label">Local do evento*</label>
+                                            <input type="text" class="form-control" id="local" name="local" placeholder="Nome do salão/pizzaria/etc." required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="row">
+                                        <!-- Mensagem -->
+                                        <div class="col-12">
+                                            <label for="msg" class="form-label">Mensagem (opcional)</label>
+                                            <textarea id="msg" name="mensagem" class="form-control" rows="3" placeholder="Conte mais sobre o evento (ex.: público esperado, detalhes especiais...)"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Honeypot anti-spam -->
+                                <input type="text" name="_gotcha" class="d-none" tabindex="-1" autocomplete="off">
+
+                                <!-- Configs Formspree -->
+                                <input type="hidden" name="_subject" value="Novo orçamento – Mestre Sagu">
+                                <input type="hidden" name="_format" value="plain">
+
+                                <!-- Botões -->
+                                <div class="col-12  mt-3">
+                                    <div class="row">
+                                        <div class="col-md-6 col-lg-6 col-12 mt-1 mb-1">
+                                            <button type="submit" class="btn btn-primary">Enviar pedido</button>
+                                        </div>
+                                        <div class="col-md-8 col-lg-6 col-12 text-md-end mt-1 mb-1">
+                                            <a href="https://wa.me/5513996601951" target="_blank" class="btn btn-outline-light">Falar no WhatsApp</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <small class="text-muted mt-2">*Campos obrigatórios</small>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============== rodape (HOME) ============== -->
+    <footer class="site-footer py-5 text-white bg-footer">
+        <div class="container-fluid">
+            <div class="row gy-4 px-5 py-5 justify-content-center">
+                <!-- Logo + frase -->
+                <div class="col-md-3 col-lg-3 col-12 text-center text-md-start px-5">
+                    <img src="./IMGS/LOGO - MESTRE SAGU - 2024 - 3.png" alt="Logo Mestre Sagu" class="footer-logo mb-3">
+                    <h5 class="fw-bold">A melhor trilha para seu evento há mais de 10 anos.</h5>
+                </div>
+
+                <!-- Navegação -->
+                <div class="col-md-2 col-lg-2 col-12 text-center px-5">
+                    <h5 class="mb-3">Navegação</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2 mt-2"><a href="#hero">Início</a></li>
+                        <li class="mb-2"><a href="#agenda">Agenda</a></li>
+                        <li class="mb-2"><a href="#musica">Música</a></li>
+                        <li class="mb-2"><a href="#fotos">Fotos</a></li>
+                        <li class="mb-2"><a href="#sobre">Sobre</a></li>
+                        <li class="mb-2"><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes e contato -->
+                <div class="col-md-3 col-lg-3 col-12 text-center text-md-end px-5">
+                    <h5 class="mb-3">Contato</h5>
+                    <p class="small mb-2">📞 (13) 99660-1951</p>
+                    <p class="small mb-3">✉️ contato.mestresagu@gmail.com</p>
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="https://wa.me/5513996601951" target="_blank" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                        <a href="https://instagram.com/mestresaguoficial" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4 text-white-50">
+
+            <p class="text-center small mb-0">
+                &copy; 2025 Mestre Sagu • Todos os direitos reservados. Feito com
+                <i class="bi bi-heart-fill heart-pulse"></i> por <a class="fw-bolder" href="https://afortioriit.com.br"> A FORTIORI IT</a>
+            </p>
+        </div>
+    </footer>
+    <!-- BARRA FLUTUANTE DE REDES -->
+    <div class="social-float">
+        <a href="https://wa.me/5513996601951" target="_blank" aria-label="WhatsApp">
+            <i class="bi bi-whatsapp"></i>
+        </a>
+        <a href="https://instagram.com/mestresaguoficial" target="_blank" aria-label="Instagram">
+            <i class="bi bi-instagram"></i>
+        </a>
+    </div>
+    <!-- ============== MODAL: Agenda completa (lista por meses) ============== -->
+    <div class="modal fade" id="agendaModal" tabindex="-1" aria-labelledby="agendaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h3 class="modal-title h5 m-0" id="agendaModalLabel">Agenda completa</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+
+                <div class="modal-body">
+                    <!-- Contêiner rolável (CSS limita a 800px) -->
+                    <div id="agendaList" class="agenda-list">
+                        <!-- JS injeta blocos por mês -->
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <a class="btn btn-outline-secondary btn-sm" href="https://instagram.com/mestresaguoficial" target="_blank" rel="noopener">
+          Ver bastidores no Instagram
+        </a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap 5.3.3 Bundle JS (inclui Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./JS/codigo.js"></script>
+</body>
+
+</html>

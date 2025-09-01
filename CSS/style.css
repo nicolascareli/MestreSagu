@@ -1,0 +1,740 @@
+/* Fonte padrão do site */
+
+body {
+    font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #0b0b0d;
+    /* exemplo: fundo escuro rock */
+    color: #f5f5f5;
+    /* texto claro */
+}
+
+
+/* Títulos */
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 700;
+    /* bold */
+    letter-spacing: 0.5px;
+}
+
+
+/* Banner responsivo */
+
+.hero {
+    background: url("assets/banner.jpg") center/cover no-repeat;
+    width: 100%;
+    /* Altura padrão (desktop/notebook) */
+    min-height: 800px !important;
+    max-height: 800px !important;
+}
+
+
+/* No celular: ocupa a tela toda */
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 40vh !important;
+        max-height: 40vh !important;
+    }
+}
+
+
+/* Botão principal */
+
+.btn-primary {
+    background-color: #6e2bf2;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #5822c2;
+}
+
+
+/* Tarja roxa + botão branco centralizado */
+
+.cta-bar {
+    background: #1d1d1d;
+}
+
+
+/* NAVBAR inicial: transparente, texto branco */
+
+.nav-main {
+    background: transparent;
+    transition: background-color .3s ease, box-shadow .3s ease, border-color .3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.nav-main .navbar-brand,
+.nav-main .nav-link {
+    color: #fff;
+}
+
+
+/* Sublinhado do item ativo/hover */
+
+.nav-main .nav-link {
+    position: relative;
+    font-weight: 600;
+}
+
+.nav-main .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -8px;
+    height: 2px;
+    background: transparent;
+    transition: background-color .2s ease, transform .2s ease;
+    transform: scaleX(0);
+}
+
+.nav-main .nav-link:hover::after,
+.nav-main .nav-link.active::after {
+    background: #fff;
+    transform: scaleX(1);
+}
+
+
+/* Ao rolar 400px: fundo preto, mantém letras brancas, borda sutil */
+
+.nav-main.scrolled {
+    background: #000;
+    border-bottom-color: rgba(255, 255, 255, .1);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
+}
+
+
+/* Ajustes do toggler (ícone hambúrguer branco) */
+
+.navbar-dark .navbar-toggler {
+    border-color: rgba(255, 255, 255, .25);
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+
+/* Em telas pequenas, manter contraste */
+
+@media (max-width: 991.98px) {
+    .nav-main {
+        background: rgba(0, 0, 0, .65);
+    }
+    .nav-main.scrolled {
+        background: #000;
+    }
+}
+
+
+/* =========================
+   AGENDA – carrossel & lista
+   ========================= */
+
+
+/* Cards */
+
+.agenda-card {
+    background: #121218;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: .75rem;
+    transition: transform .2s ease;
+}
+
+.agenda-card:hover {
+    transform: translateY(-3px);
+}
+
+
+/* Badge de data */
+
+.date-badge {
+    width: 60px;
+    min-width: 60px;
+    background: #1a1a22;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: .5rem;
+    padding: .35rem .25rem;
+    line-height: 1;
+}
+
+.date-badge .day {
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+
+.date-badge .mon {
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #bdbdc7;
+}
+
+
+/* Detalhes: cinza claro (fundo escuro) */
+
+.agenda-card .text-muted,
+.agenda-item small {
+    color: #d1d1d6 !important;
+}
+
+
+/* Indicadores (bolinhas) do carrossel */
+
+.carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+
+/* =========================
+   AGENDA COMPLETA (modal)
+   ========================= */
+
+.agenda-list {
+    max-height: 800px;
+    overflow-y: auto;
+    padding-right: .5rem;
+}
+
+.agenda-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.agenda-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, .2);
+    border-radius: 4px;
+}
+
+
+/* Lista completa com rolagem confortável */
+
+#agendaCompletaList {
+    max-height: 800px;
+    /* ajuste como preferir */
+    overflow-y: auto;
+    padding-right: .25rem;
+    /* evita cortar o conteúdo sob a barra */
+    scrollbar-width: thin;
+}
+
+
+/* Bloco do mês */
+
+.agenda-month {
+    margin-bottom: 2rem;
+}
+
+.month-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: .75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+    padding-bottom: .25rem;
+    position: sticky;
+    top: 0;
+    background: #121218;
+    z-index: 1;
+}
+
+
+/* Lista */
+
+.month-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.agenda-item {
+    padding: .75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.agenda-item:last-child {
+    border-bottom: none;
+}
+
+.agenda-item time {
+    font-weight: 700;
+    margin-right: .5rem;
+}
+
+
+/* Ajuste: deixa espaço para os indicadores (bolinhas) */
+
+#agendaCarouselMobile .carousel-inner {
+    padding-bottom: 4rem;
+    /* empurra os cards pra cima, liberando espaço */
+}
+
+
+/* Centraliza verticalmente as setas e joga mais pro lado */
+
+#agendaCarouselMobile .carousel-control-prev,
+#agendaCarouselMobile .carousel-control-next {
+    width: 12%;
+    /* área de clique maior */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+}
+
+
+/* Indicadores (bolinhas) abaixo dos cards */
+
+#agendaCarouselMobile .carousel-indicators {
+    bottom: 0.5rem;
+    /* ajusta distância da borda inferior */
+    z-index: 6;
+}
+
+
+/* HERO base */
+
+.hero {
+    position: relative;
+    min-height: 90vh;
+    background: #0b0b0d;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    /* empilha vertical */
+    justify-content: flex-start;
+    /* conteúdo no topo */
+    text-align: center;
+}
+
+
+/* Texto sempre por cima */
+
+.hero-overlay {
+    position: relative;
+    z-index: 1;
+    /* texto fica atrás */
+    padding-top: 2rem;
+}
+
+.hero-image {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    /* foto na frente */
+    width: 100%;
+    text-align: center;
+}
+
+.hero-image img {
+    display: block;
+    width: 80% !important;
+    /* ajuste do tamanho que você quiser */
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+
+/* Ajustes visuais */
+
+
+/* Mobile first (até <768px) */
+
+.hero-title h1 {
+    font-size: clamp(1rem, 8vw, 3rem) !important;
+    letter-spacing: 1px;
+}
+
+.hero-logo {
+    width: clamp(72px, 14vw, 120px);
+    height: auto;
+}
+
+
+/* ≥768px (md) */
+
+@media (min-width: 768px) {
+    .hero-title h1 {
+        font-size: clamp(2.6rem, 6vw, 6rem) !important;
+    }
+    .hero-logo {
+        width: clamp(100px, 10vw, 140px);
+    }
+    .mt-banner {
+        margin-top: 0rem !;
+    }
+}
+
+.mt-banner {
+    margin-top: 3rem;
+}
+
+
+/* Barra flutuante de redes sociais */
+
+.social-float {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: #1c1c1e;
+    /* cinza escuro de fundo */
+    padding: .5rem;
+    border-radius: .75rem 0 0 .75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.social-float a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: #fff;
+    transition: all .2s ease;
+    text-decoration: none;
+}
+
+
+/* WhatsApp */
+
+.social-float a:nth-child(1) {
+    background: #25d366;
+}
+
+.social-float a:nth-child(1):hover {
+    background: #1ebe5d;
+}
+
+
+/* Instagram */
+
+.social-float a:nth-child(2) {
+    background: #e4405f;
+}
+
+.social-float a:nth-child(2):hover {
+    background: #c13548;
+}
+
+
+/* Esconde no MOBILE (até 767px) */
+
+.hide-mobile {
+    display: none !important;
+}
+
+@media (min-width: 768px) {
+    .hide-mobile {
+        display: block !important;
+    }
+}
+
+
+/* Esconde no DESKTOP (a partir de 768px) */
+
+.hide-desktop {
+    display: block !important;
+}
+
+@media (min-width: 768px) {
+    .hide-desktop {
+        display: none !important;
+    }
+}
+
+.site-footer {
+    background: #0b0b0d;
+    color: #f5f5f5;
+    font-size: .9rem;
+}
+
+.site-footer a {
+    color: #d1d1d6;
+    text-decoration: none;
+    transition: color .2s ease;
+}
+
+.site-footer a:hover {
+    color: #6e2bf2;
+    /* roxo destaque da banda */
+}
+
+.footer-logo {
+    max-width: 140px;
+    height: auto;
+}
+
+.bg-footer {
+    background-color: #1c1c1e !important;
+}
+
+
+/* Coração pulsando */
+
+.heart-pulse {
+    color: #e63946;
+    /* vermelho */
+    margin-left: .25rem;
+    display: inline-block;
+    animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+}
+
+
+/* Seção SOBRE (duas colunas no desktop) */
+
+.about-section h2 {
+    letter-spacing: .5px;
+}
+
+.about-card {
+    background: #121218;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: .75rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
+}
+
+.about-list {
+    margin: 0 0 .75rem 0;
+    padding-left: 1.1rem;
+}
+
+.about-list li {
+    margin-bottom: .35rem;
+}
+
+
+/* Espaçamento mais confortável no mobile */
+
+@media (max-width: 991.98px) {
+    .about-card {
+        padding: 1.25rem;
+    }
+}
+
+
+/* ===== INTEGRANTES (base) ===== */
+
+.members-section h2 {
+    letter-spacing: .5px;
+}
+
+.members-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.member-card {
+    background: #121218;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: .75rem;
+    padding: 1.25rem;
+    text-align: center;
+    transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .12);
+}
+
+.member-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: inline-block;
+    border: 2px solid rgba(255, 255, 255, .15);
+    margin-bottom: .75rem;
+}
+
+.member-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.member-role {
+    margin: .15rem 0 .5rem;
+}
+
+.member-bio {
+    font-size: .95rem;
+    color: #d1d1d6;
+    margin: 0;
+    line-height: 1.45;
+}
+
+
+/* Destaque no hover (só em dispositivos com hover, ex.: desktop) */
+
+@media (hover: hover) {
+    .members-grid:hover .member-card {
+        opacity: .45;
+        filter: saturate(.85);
+    }
+    .members-grid .member-card:hover {
+        opacity: 1;
+        transform: translateY(-4px);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, .22);
+        filter: none;
+    }
+}
+
+
+/* ===== CARROSSEL (mobile) ===== */
+
+#membersCarousel .carousel-inner {
+    padding-bottom: 2rem;
+}
+
+
+/* espaço pras bolinhas */
+
+#membersCarousel .carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+#membersCarousel .member-card {
+    /* um respiro lateral no card do slide */
+    margin: 0 auto;
+    max-width: 520px;
+}
+
+
+/* ===== CONTATO ===== */
+
+.contact-card {
+    background: #121218;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: .75rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
+}
+
+.contact-section .form-label {
+    font-weight: 600;
+}
+
+.contact-section .form-control,
+.contact-section .form-select {
+    background: #0b0b0d;
+    border: 1px solid rgba(255, 255, 255, .12);
+    color: #f1f1f1;
+}
+
+.contact-section .form-control::placeholder {
+    color: #9c9ca3;
+}
+
+.contact-section .form-control:focus,
+.contact-section .form-select:focus {
+    border-color: #6e2bf2;
+    box-shadow: 0 0 0 .2rem rgba(110, 43, 242, .25);
+}
+
+.alert-success,
+.alert-danger {
+    border: none;
+    border-radius: .6rem;
+}
+
+input[type="date"],
+input[type="time"] {
+    color-scheme: dark;
+    /* deixa os seletores combinando com tema escuro */
+}
+
+
+/* GALERIA: visual bonito e consistente */
+
+.gallery-section .carousel-inner {
+    padding-bottom: 2rem;
+}
+
+
+/* espaço pras bolinhas */
+
+.gallery-section .carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.gallery-frame {
+    border-radius: 1.75rem;
+    overflow: hidden;
+}
+
+
+/* imagem preenche o quadrado mantendo corte elegante */
+
+.gallery-img {
+    transition: transform .25s ease, filter .25s ease;
+    max-width: 900px !important;
+}
+
+@media (hover: hover) {
+    .carousel-item.active .gallery-img:hover {
+        transform: scale(1.03);
+        filter: brightness(1.05);
+    }
+}
+
+
+/* ===== MÚSICA / SPOTIFY ===== */
+
+.music-section h2 {
+    letter-spacing: .5px;
+}
+
+.spotify-embed {
+    background: #121218;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 12px;
+    padding: .5rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
+}
+
+.spotify-embed iframe {
+    display: block;
+    width: 100%;
+    height: 352px;
+    /* pode ajustar */
+    border: 0;
+    border-radius: 10px;
+    /* acompanha o contorno externo */
+}
+
+
+/* altura um pouco menor em telas bem pequenas, se quiser */
+
+@media (max-width: 375px) {
+    .spotify-embed iframe {
+        height: 300px;
+    }
+}
