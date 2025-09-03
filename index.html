@@ -46,6 +46,7 @@
                     <li class="nav-item"><a class="nav-link" href="#fotos">Fotos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faclub">Fã Clube</a></li>
                     <li class="nav-item ms-lg-3">
                         <a class="btn btn-light btn-sm fw-bolder" href="https://wa.me/5513996601951"><i class="bi bi-lightning-charge me-1"></i>Contratar a Banda</a>
                     </li>
@@ -54,21 +55,48 @@
         </div>
     </nav>
     <!-- ============== Topo (HOME) ============== -->
+    <!-- ===== BEGIN: HERO ===== -->
     <section id="hero" class="hero text-white">
-        <!-- Texto + logo em 3 colunas -->
-        <div class="container hero-overlay mt-banner">
-            <div class="hero-title d-flex justify-content-center align-items-center gap-0">
-                <h1 class="display-3 fw-bold m-0">MESTRE</h1>
-                <img src="./IMGS/LOGO - MESTRE SAGU - 2024 - 3.png" alt="hero-logo Mestre Sagu" class="hero-logo mx-2">
-                <h1 class="display-3 fw-bold m-0">SAGU</h1>
-            </div>
-        </div>
-
-        <!-- Foto da banda grudada no rodapé -->
+        <!-- Imagem de topo: colada no rodapé da seção, com ~20px de respiro no topo -->
         <div class="hero-image">
-            <img src="./IMGS/banda-topo.png" alt="Banda Mestre Sagu" class="w-100 h-auto">
+            <img src="./IMGS/banda-topo.png" alt="Banda Mestre Sagu - imagem de topo" class="hero-img" loading="eager" decoding="async">
         </div>
     </section>
+    <!-- ===== BEGIN: STATS ===== -->
+    <section id="stats" class="stats-section py-4">
+        <div class="container">
+            <div class="row g-3 text-center align-items-stretch justify-content-center">
+
+                <div class="col-12 col-lg-3 h-100 d-flex align-items-center justify-content-center">
+                    <div class="stat-icon me-1"><i class="bi bi-award-fill"></i></div>
+                    <div class="stat-text">
+                        <span class="count" data-target="10" data-suffix="+">0</span>
+                        <span class="stat-label">anos na estrada</span>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-lg-3 h-100 d-flex align-items-center justify-content-center">
+                    <div class="stat-icon me-1"><i class="bi bi-clock-history"></i></div>
+                    <div class="stat-text">
+                        <span class="count" data-target="4" data-suffix="h">0</span>
+                        <span class="stat-label m-0">de show sem pausa</span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-3 h-100 d-flex align-items-center justify-content-center">
+                    <div class="stat-icon me-1"><i class="bi bi-music-note-beamed"></i></div>
+                    <div class="stat-text">
+                        <span class="count" data-target="1500" data-suffix="+">0</span>
+                        <span class="stat-label m-0">shows realizados</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- ===== END: STATS ===== -->
+    <!-- ===== END: HERO ===== -->
     <!-- ============== tarja (HOME) ============== -->
     <section class="cta-bar py-3">
         <div class="container text-center">
@@ -76,7 +104,7 @@
         </div>
     </section>
     <!-- ============== AGENDA (HOME) ============== -->
-    <section id="agenda" class="agenda-section p-2 mt-4">
+    <section id="agenda" class="agenda-section py-4 px-2">
         <div class="container">
             <div class="d-flex justify-content-between align-items-end mb-4">
                 <h5 class="m-0">Proximos Shows</h5>
@@ -104,49 +132,42 @@
         </div>
     </section>
     <!-- ============== Sobre Nos (HOME) ============== -->
-    <section id="sobre" class="about-section py-5">
+    <section id="sobre" class="about-section mb-5 px-3">
         <div class="container">
             <div class="row g-4 align-items-stretch">
                 <!-- Coluna 1: Sobre nós -->
                 <div class="col-12 col-lg-6">
-                    <article class="about-card h-100 p-4">
-                        <h2 class="mb-3"><i class="bi bi-people-fill me-2"></i>Sobre nós</h2>
-                        <p class="mb-3">
-                            Somos a <strong>Mestre Sagu</strong>, banda de pop rock com <strong>energia de palco</strong> e repertório que conversa com todos os públicos — de pizzarias a palcos de prefeitura, aniversários e casamentos.
-                        </p>
-                        <p class="mb-0">
-                            São <em>4 horas de show sem pausa</em>, arranjos próprios, presença de palco e interação com a galera. Nosso foco é entregar <strong>a melhor trilha para o seu evento</strong>.
-                        </p>
-                        <h2 class="mb-3 mt-5"><i class="bi bi-lightning-charge-fill me-2"></i>10 anos de banda</h2>
-                        <ul class="about-list">
-                            <li><strong>+10 anos</strong> na estrada, dezenas de cidades e palcos.</li>
-                            <li>Repertório pop rock com clássicos e hits atuais.</li>
-                            <li>Formato versátil para bares, eventos privados e públicos.</li>
-                            <li>Equipe profissional e pontual, som e logística redondos.</li>
-                        </ul>
-                        <p class="mb-0 text-muted">*Entre em contato para montar o setlist perfeito pro seu evento.</p>
-                    </article>
+                    <h2><i class="bi bi-people-fill me-2"></i>Sobre nós</h2>
+                    <p>
+                        Somos a <strong>Mestre Sagu</strong>, banda de pop rock com <strong>energia de palco</strong> e repertório que conversa com todos os públicos — de pizzarias a palcos de prefeitura, aniversários e casamentos.
+                    </p>
+                    <p>
+                        São <em>4 horas de show sem pausa</em>, arranjos próprios, presença de palco e interação com a galera. Nosso foco é entregar <strong>a melhor trilha para o seu evento</strong>.
+                    </p>
                 </div>
 
                 <!-- Coluna 2: 10 anos de banda -->
-                <div class="col-12 col-lg-6" id="musica">
-                    <article class="about-card h-100 p-4">
-                        <h2 class="mb-4 text-center">Ouça nossa música</h2>
-                        <div class="spotify-embed">
-                            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/7Hs5DSlRCHpO2LNHtJxdau?utm_source=generator" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                        </div>
-                        <!-- CTA opcional -->
-                        <div class="text-center mt-3">
-                            <a class="btn btn-outline-light btn-sm" href="https://open.spotify.com/album/7Hs5DSlRCHpO2LNHtJxdau" target="_blank" rel="noopener">Abrir no Spotify</a>
-                        </div>
-
-                    </article>
+                <div class="col-12 col-lg-6">
+                    <h2><i class="bi bi-lightning-charge-fill me-2"></i>10 anos de banda</h2>
+                    <ul class="about-list">
+                        <li><strong>+10 anos</strong> na estrada, dezenas de cidades e palcos.</li>
+                        <li>Repertório pop rock com clássicos e hits atuais.</li>
+                        <li>Formato versátil para bares, eventos privados e públicos.</li>
+                        <li>Equipe profissional e pontual, som e logística redondos.</li>
+                    </ul>
+                    <p class="mb-0">*Entre em contato para montar o setlist perfeito pro seu evento.</p>
                 </div>
             </div>
         </div>
     </section>
+    <!-- ============== tarja (HOME) ============== -->
+    <section class="cta-bar py-3">
+        <div class="container text-center">
+            <a href="https://wa.me/5513996601951" class="btn btn-light btn-sm fw-bolder"><i class="bi bi-lightning-charge me-1"></i>CONTRATE A BANDA</a>
+        </div>
+    </section>
     <!-- ==============  Integrantes (HOME) ============== -->
-    <section id="integrantes" class="members-section py-5">
+    <section id="integrantes" class="members-section mt-5">
         <div class="container">
             <h2 class="mb-4 text-center">Integrantes</h2>
 
@@ -186,54 +207,16 @@
             </div>
 
             <!-- MOBILE: carrossel 1 por vez (sem setas, com bolinhas) -->
+            <!-- ===== BEGIN: MEMBERS (MOBILE CAROUSEL CONTAINERS) ===== -->
             <div id="membersCarousel" class="carousel slide d-md-none" data-bs-ride="carousel" data-bs-interval="5500" data-bs-touch="true">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#membersCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Integrante 1"></button>
-                    <button type="button" data-bs-target="#membersCarousel" data-bs-slide-to="1" aria-label="Integrante 2"></button>
-                    <button type="button" data-bs-target="#membersCarousel" data-bs-slide-to="2" aria-label="Integrante 3"></button>
-                    <button type="button" data-bs-target="#membersCarousel" data-bs-slide-to="3" aria-label="Integrante 4"></button>
+                <div class="carousel-indicators" id="membersIndicators">
+                    <!-- JS injeta bolinhas -->
                 </div>
-
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <article class="member-card mx-3">
-                            <img src="assets/members/integrante1.jpg" alt="Nome do Integrante 1" class="member-avatar">
-                            <h3 class="member-name">Integrante 1</h3>
-                            <p class="member-role text-muted">Voz & Guitarra</p>
-                            <p class="member-bio">Release curto do integrante — trajetória, estilo e influência musical.</p>
-                        </article>
-                    </div>
-
-                    <div class="carousel-item">
-                        <article class="member-card mx-3">
-                            <img src="assets/members/integrante2.jpg" alt="Nome do Integrante 2" class="member-avatar">
-                            <h3 class="member-name">Integrante 2</h3>
-                            <p class="member-role text-muted">Baixo</p>
-                            <p class="member-bio">Release curto — presença de palco, groove e referências.</p>
-                        </article>
-                    </div>
-
-                    <div class="carousel-item">
-                        <article class="member-card mx-3">
-                            <img src="assets/members/integrante3.jpg" alt="Nome do Integrante 3" class="member-avatar">
-                            <h3 class="member-name">Integrante 3</h3>
-                            <p class="member-role text-muted">Bateria</p>
-                            <p class="member-bio">Release curto — pegada, dinâmica e experiência na estrada.</p>
-                        </article>
-                    </div>
-
-                    <div class="carousel-item">
-                        <article class="member-card mx-3">
-                            <img src="assets/members/integrante4.jpg" alt="Nome do Integrante 4" class="member-avatar">
-                            <h3 class="member-name">Integrante 4</h3>
-                            <p class="member-role text-muted">Teclados</p>
-                            <p class="member-bio">Release curto — timbres, arranjos e influências.</p>
-                        </article>
-                    </div>
+                <div class="carousel-inner" id="membersSlides">
+                    <!-- JS injeta slides -->
                 </div>
-
-                <!-- Sem setas no mobile -->
             </div>
+            <!-- ===== END: MEMBERS (MOBILE CAROUSEL CONTAINERS) ===== -->
         </div>
     </section>
     <!-- ==============  Insta (HOME) ============== -->
@@ -258,27 +241,27 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active text-center">
                         <div class="gallery-frame">
-                            <img src="./IMGS/fotos/img05.png" class="gallery-img rounded" alt="Foto 1">
+                            <img src="./IMGS/fotos/img05.png" class="gallery-img" alt="Foto 1">
                         </div>
                     </div>
                     <div class="carousel-item text-center">
                         <div class="gallery-frame">
-                            <img src="./IMGS/fotos/img04.png" class="gallery-img rounded" alt="Foto 2">
+                            <img src="./IMGS/fotos/img04.png" class="gallery-img" alt="Foto 2">
                         </div>
                     </div>
                     <div class="carousel-item text-center">
                         <div class="gallery-frame">
-                            <img src="./IMGS/fotos/img03.png" class="gallery-img rounded" alt="Foto 3">
+                            <img src="./IMGS/fotos/img03.png" class="gallery-img" alt="Foto 3">
                         </div>
                     </div>
                     <div class="carousel-item text-center">
                         <div class="gallery-frame">
-                            <img src="./IMGS/fotos/img02.png" class="gallery-img rounded" alt="Foto 4">
+                            <img src="./IMGS/fotos/img02.png" class="gallery-img" alt="Foto 4">
                         </div>
                     </div>
                     <div class="carousel-item text-center">
                         <div class="gallery-frame">
-                            <img src="./IMGS/fotos/img01.png" class="gallery-img rounded" alt="Foto 5">
+                            <img src="./IMGS/fotos/img01.png" class="gallery-img" alt="Foto 5">
                         </div>
                     </div>
                 </div>
@@ -288,11 +271,11 @@
         </div>
     </section>
     <!-- ==============  Contato (HOME) ============== -->
-    <section id="contato" class="contact-section mb-5">
+    <section id="contato" class="contact-section py-3 px-3 mb-4">
         <div class="container-fluid">
-            <h2 class="mb-4 text-center">Contato para Orçamentos</h2>
+            <h2 class="mb-4 text-center px-1">Contato para Orçamentos</h2>
 
-            <div class="row justify-content-center py-3 px-3">
+            <div class="row justify-content-center">
                 <div class="col-12 col-lg-8">
                     <div class="contact-card p-4">
                         <!-- Alertas -->
@@ -422,6 +405,19 @@
             </div>
         </div>
     </section>
+    <!-- ===== BEGIN: FANCLUB ===== -->
+    <section id="faclub" class="fanclub-section py-5 px-3">
+        <div class="container text-center">
+            <h2 class="mb-3">🎶 Fã Clube Oficial Mestre Sagu</h2>
+            <p class="mb-4 lead">
+                Faça parte da nossa comunidade de fãs e fique por dentro de tudo que rola nos bastidores!
+            </p>
+            <a href="https://www.instagram.com/saguzeiros_fc" target="_blank" class="btn btn-primary">
+                <i class="bi bi-instagram me-2"></i> Seguir no Instagram
+            </a>
+        </div>
+    </section>
+    <!-- ===== END: FANCLUB ===== -->
     <!-- ============== rodape (HOME) ============== -->
     <footer class="site-footer py-5 text-white bg-footer">
         <div class="container-fluid">
@@ -438,10 +434,10 @@
                     <ul class="list-unstyled small">
                         <li class="mb-2 mt-2"><a href="#hero">Início</a></li>
                         <li class="mb-2"><a href="#agenda">Agenda</a></li>
-                        <li class="mb-2"><a href="#musica">Música</a></li>
                         <li class="mb-2"><a href="#fotos">Fotos</a></li>
                         <li class="mb-2"><a href="#sobre">Sobre</a></li>
                         <li class="mb-2"><a href="#contato">Contato</a></li>
+                        <li class="mb-2"><a href="#faclub">Fã Club</a></li>
                     </ul>
                 </div>
 
@@ -460,7 +456,7 @@
 
             <hr class="my-4 text-white-50">
 
-            <p class="text-center small mb-0">
+            <p class="text-center small mb-0 px-4">
                 &copy; 2025 Mestre Sagu • Todos os direitos reservados. Feito com
                 <i class="bi bi-heart-fill heart-pulse"></i> por <a class="fw-bolder" href="https://afortioriit.com.br"> A FORTIORI IT</a>
             </p>
@@ -486,9 +482,12 @@
 
                 <div class="modal-body">
                     <!-- Contêiner rolável (CSS limita a 800px) -->
-                    <div id="agendaList" class="agenda-list">
-                        <!-- JS injeta blocos por mês -->
+                    <!-- ===== BEGIN: AGENDA (MODAL LIST CONTAINER) ===== -->
+                    <div id="agendaCompletaList" class="agenda-list">
+                        <!-- JS injeta blocos por mês (modal) -->
                     </div>
+                    <!-- ===== END: AGENDA (MODAL LIST CONTAINER) ===== -->
+
                 </div>
 
                 <div class="modal-footer">

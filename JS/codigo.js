@@ -8,7 +8,7 @@ console.log("Mestre Sagu site carregado 🎸🤘");
 // ==============================
 const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSR968DhqhfY_79bsKR_diVD-1OZ0kgjNUL5LXTvrk-0JUXL9xt-8LXXyh_73tB7doPXnwq1RCeMFf_/pub?gid=733115468&single=true&output=csv";
 
-const LIMIT_DESKTOP = 3; // quantos cards na vitrine desktop
+const LIMIT_DESKTOP = 6; // quantos cards na vitrine desktop
 const LIMIT_CAROUSEL = 6; // quantos slides no carrossel mobile
 
 // IDs de elementos esperados no HTML
@@ -32,7 +32,7 @@ let AGENDA_UPCOMING = [];
 
     function onScroll() {
         if (!nav) return;
-        if (window.scrollY >= 400) nav.classList.add("scrolled");
+        if (window.scrollY >= 100) nav.classList.add("scrolled");
         else nav.classList.remove("scrolled");
     }
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -113,23 +113,33 @@ function parseCSV(text) {
     for (let i = 0; i < text.length; i++) {
         const c = text[i],
             n = text[i + 1];
-        if (c === '"' && n === '"') { field += '"';
-            i++; continue; }
+        if (c === '"' && n === '"') {
+            field += '"';
+            i++;
+            continue;
+        }
         if (c === '"') { inQ = !inQ; continue; }
-        if (!inQ && c === ",") { row.push(field);
-            field = ""; continue; }
+        if (!inQ && c === ",") {
+            row.push(field);
+            field = "";
+            continue;
+        }
         if (!inQ && (c === "\n" || c === "\r")) {
-            if (field !== "" || row.length) { row.push(field);
+            if (field !== "" || row.length) {
+                row.push(field);
                 rows.push(row);
                 row = [];
-                field = ""; }
+                field = "";
+            }
             if (c === "\r" && n === "\n") i++;
             continue;
         }
         field += c;
     }
-    if (field !== "" || row.length) { row.push(field);
-        rows.push(row); }
+    if (field !== "" || row.length) {
+        row.push(field);
+        rows.push(row);
+    }
 
     if (!rows.length) return [];
     const headers = rows.shift().map(h => String(h).trim());
@@ -402,3 +412,102 @@ loadAgenda().catch(err => console.error("Erro ao carregar agenda:", err));
 // setInterval(() => {
 //   loadAgenda().catch(console.error);
 // }, 600000);
+
+
+// ===== BEGIN: MEMBERS (SYNC GRID -> MOBILE CAROUSEL) =====
+(function syncMembersToCarousel() {
+    // Seleciona a grade desktop e o carrossel mobile
+    const grid = document.querySelector('.members-grid'); // desktop grid (d-none d-md-grid)
+    const ind = document.getElementById('membersIndicators'); // mobile indicators
+    const slides = document.getElementById('membersSlides'); // mobile slides
+    const carousel = document.getElementById('membersCarousel');
+
+    if (!grid || !ind || !slides || !carousel) return; // nada a fazer se faltar algo
+
+    // Captura todos os "cards" de integrante no desktop
+    const cards = Array.from(grid.querySelectorAll('.member-card'));
+    if (!cards.length) return;
+
+    // Limpa containers do mobile (caso já tenham algo)
+    ind.innerHTML = '';
+    slides.innerHTML = '';
+
+    // Monta indicadores e slides com base nos cards
+    cards.forEach((card, i) => {
+        // Indicadores (bolinhas)
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.setAttribute('data-bs-target', '#membersCarousel');
+        btn.setAttribute('data-bs-slide-to', String(i));
+        btn.setAttribute('aria-label', `Integrante ${i + 1}`);
+        if (i === 0) {
+            btn.classList.add('active');
+            btn.setAttribute('aria-current', 'true');
+        }
+        ind.appendChild(btn);
+
+        // Slide
+        const item = document.createElement('div');
+        item.className = 'carousel-item' + (i === 0 ? ' active' : '');
+        // Reaproveita o HTML do card desktop, mas envolve com um article para manter o padding/estilo
+        const wrapper = document.createElement('article');
+        wrapper.className = 'member-card mx-3';
+        wrapper.innerHTML = card.innerHTML;
+        item.appendChild(wrapper);
+
+        slides.appendChild(item);
+    });
+})();
+// ===== END: MEMBERS (SYNC GRID -> MOBILE CAROUSEL) =====
+
+
+// ===== BEGIN: STATS COUNTER =====
+(function setupStatsCounter() {
+    const section = document.getElementById('stats');
+    if (!section) return;
+
+    const counters = Array.from(section.querySelectorAll('.count'));
+    if (!counters.length) return;
+
+    let started = false;
+    const easeOut = t => 1 - Math.pow(1 - t, 3); // acelera e desacelera suave
+
+    function animateCounter(el, target, suffix, duration = 1400) {
+        const start = performance.now();
+        const from = 0;
+
+        function frame(now) {
+            const p = Math.min(1, (now - start) / duration);
+            const val = Math.round(easeOut(p) * target);
+            el.textContent = String(val);
+            if (p < 1) requestAnimationFrame(frame);
+            else el.textContent = String(target); // valor final
+        }
+        requestAnimationFrame(frame);
+
+        // aplica o sufixo visual sem atrapalhar a contagem
+        if (suffix) {
+            const s = document.createElement('span');
+            s.textContent = suffix;
+            s.style.marginLeft = '2px';
+            el.after(s);
+        }
+    }
+
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !started) {
+                started = true;
+                counters.forEach(el => {
+                    const target = parseInt(el.getAttribute('data-target') || '0', 10);
+                    const suffix = el.getAttribute('data-suffix') || '';
+                    animateCounter(el, target, suffix);
+                });
+                io.disconnect();
+            }
+        });
+    }, { threshold: 0.35 });
+
+    io.observe(section);
+})();
+// ===== END: STATS COUNTER =====

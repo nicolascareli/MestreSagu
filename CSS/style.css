@@ -24,24 +24,6 @@ h5 {
 
 /* Banner responsivo */
 
-.hero {
-    background: url("assets/banner.jpg") center/cover no-repeat;
-    width: 100%;
-    /* Altura padrão (desktop/notebook) */
-    min-height: 800px !important;
-    max-height: 800px !important;
-}
-
-
-/* No celular: ocupa a tela toda */
-
-@media (max-width: 768px) {
-    .hero {
-        min-height: 40vh !important;
-        max-height: 40vh !important;
-    }
-}
-
 
 /* Botão principal */
 
@@ -195,6 +177,17 @@ h5 {
 }
 
 
+/* ===== BEGIN: MEMBERS CAROUSEL FIX (indicators position) ===== */
+
+#membersCarousel .carousel-indicators {
+    bottom: -15px;
+    /* empurra as bolinhas 5px abaixo do padrão */
+}
+
+
+/* ===== END: MEMBERS CAROUSEL FIX ===== */
+
+
 /* =========================
    AGENDA COMPLETA (modal)
    ========================= */
@@ -217,14 +210,81 @@ h5 {
 
 /* Lista completa com rolagem confortável */
 
-#agendaCompletaList {
-    max-height: 800px;
-    /* ajuste como preferir */
-    overflow-y: auto;
-    padding-right: .25rem;
-    /* evita cortar o conteúdo sob a barra */
-    scrollbar-width: thin;
+
+/* ===== BEGIN: AGENDA MODAL – VIEWPORT SAFE ===== */
+
+
+/* Limita o tamanho total do modal ao viewport e centraliza */
+
+#agendaModal .modal-dialog {
+    display: flex;
+    align-items: center;
+    /* força centralização vertical */
+    min-height: calc(100vh - 2rem);
+    /* ocupa viewport sem encostar no topo/rodapé */
 }
+
+
+/* Modal-content em layout flex vertical para sticky header/footer */
+
+#agendaModal .modal-content {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 2rem);
+    /* nunca maior que a tela */
+    overflow: hidden;
+    /* impede scroll no content; vamos rolar o body */
+}
+
+
+/* Header sempre visível durante a rolagem */
+
+#agendaModal .modal-header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #121218;
+    /* combina com seu tema escuro */
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+
+/* Footer sempre visível (botões acessíveis) */
+
+#agendaModal .modal-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    background: #121218;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+}
+
+
+/* Só o corpo rola, mantendo header/footer fixos */
+
+#agendaModal .modal-body {
+    overflow: auto;
+    /* importante para flexbox não “esticar” e perder o sticky: */
+    flex: 1 1 auto;
+    min-height: 0;
+    padding-right: .5rem;
+    /* evita cortar conteúdo atrás da barra de rolagem */
+}
+
+
+/* Ajustes finos em telas muito baixas */
+
+@media (max-height: 520px) {
+    #agendaModal .modal-content {
+        max-height: calc(100vh - 1rem);
+    }
+    #agendaModal .modal-dialog {
+        margin: .5rem;
+    }
+}
+
+
+/* ===== END: AGENDA MODAL – VIEWPORT SAFE ===== */
 
 
 /* Bloco do mês */
@@ -300,82 +360,80 @@ h5 {
 
 /* HERO base */
 
+
+/* ===== BEGIN: HERO ===== */
+
+
+/* Seção hero ganha um respiro no topo (~20px) e mantém a imagem colada embaixo */
+
+
+/* ===== BEGIN: HERO ===== */
+
+
+/* ===== BEGIN: HERO BACKGROUND ===== */
+
 .hero {
     position: relative;
-    min-height: 90vh;
-    background: #0b0b0d;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    /* empilha vertical */
-    justify-content: flex-start;
-    /* conteúdo no topo */
+    background: url("../IMGS/fotos/img04.png") no-repeat center center;
+    background-size: cover;
+    /* cobre todo o espaço */
+    background-attachment: scroll;
+    /* dá efeito parallax no desktop */
+    color: #fff;
     text-align: center;
+    padding-top: 20px;
+    /* mantém seu respiro no topo */
 }
 
 
-/* Texto sempre por cima */
+/* overlay escuro pra dar contraste */
 
-.hero-overlay {
-    position: relative;
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    /* escurece a imagem de fundo */
     z-index: 1;
-    /* texto fica atrás */
-    padding-top: 2rem;
 }
+
+
+/* ===== END: HERO BACKGROUND ===== */
 
 .hero-image {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
     z-index: 2;
-    /* foto na frente */
+    display: block;
     width: 100%;
-    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 .hero-image img {
     display: block;
-    width: 80% !important;
-    /* ajuste do tamanho que você quiser */
-    margin: 0 auto;
-    object-fit: cover;
-}
-
-
-/* Ajustes visuais */
-
-
-/* Mobile first (até <768px) */
-
-.hero-title h1 {
-    font-size: clamp(1rem, 8vw, 3rem) !important;
-    letter-spacing: 1px;
-}
-
-.hero-logo {
-    width: clamp(72px, 14vw, 120px);
+    width: 70%;
     height: auto;
+    object-fit: contain;
+    /* mantém proporção da imagem */
+    margin: 0 auto;
 }
 
 
-/* ≥768px (md) */
+/* Mobile: mantém a imagem colada embaixo e garante ocupação total de largura */
 
-@media (min-width: 768px) {
-    .hero-title h1 {
-        font-size: clamp(2.6rem, 6vw, 6rem) !important;
-    }
-    .hero-logo {
-        width: clamp(100px, 10vw, 140px);
-    }
-    .mt-banner {
-        margin-top: 0rem !;
+@media (max-width: 767.98px) {
+    .hero-image img {
+        display: block;
+        width: 99%;
+        height: auto;
+        object-fit: contain;
+        /* mantém proporção da imagem */
+        margin-top: 50px !important;
     }
 }
 
-.mt-banner {
-    margin-top: 3rem;
-}
+
+/* ===== END: HERO ===== */
 
 
 /* Barra flutuante de redes sociais */
@@ -685,25 +743,67 @@ input[type="time"] {
     border-radius: 50%;
 }
 
-.gallery-frame {
-    border-radius: 1.75rem;
-    overflow: hidden;
-}
-
 
 /* imagem preenche o quadrado mantendo corte elegante */
 
-.gallery-img {
-    transition: transform .25s ease, filter .25s ease;
-    max-width: 900px !important;
+
+/* ===== BEGIN: GALLERY FIX (contain images on mobile) ===== */
+
+.gallery-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0b0b0d;
+    border-radius: 1.75rem !important;
+    overflow: hidden;
+    /* fundo escuro, combina com tema */
 }
 
-@media (hover: hover) {
-    .carousel-item.active .gallery-img:hover {
-        transform: scale(1.03);
-        filter: brightness(1.05);
+@media (max-width: 767.98px) {
+    .gallery-frame {
+        border-radius: 10px;
+        /* no mobile, sem arredondar */
     }
 }
+
+.gallery-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain !important;
+    /* mostra sempre a foto inteira */
+}
+
+
+/* Ajusta posição das bolinhas do carrossel de fotos */
+
+#galleryCarousel .carousel-indicators {
+    bottom: -10px;
+    /* desce 10px abaixo da imagem */
+}
+
+
+/* Limita altura da galeria no desktop para não ficar gigante */
+
+@media (min-width: 992px) {
+    .gallery-frame {
+        max-height: 500px;
+        /* altura máxima da moldura */
+    }
+    .gallery-frame img {
+        max-height: 500px;
+        /* altura máxima da foto */
+        width: auto;
+        /* mantém proporção */
+        object-fit: contain;
+        /* sempre mostra a foto inteira */
+    }
+}
+
+
+/* ===== END: GALLERY TUNING ===== */
+
+
+/* ===== END: GALLERY FIX ===== */
 
 
 /* ===== MÚSICA / SPOTIFY ===== */
@@ -738,3 +838,92 @@ input[type="time"] {
         height: 300px;
     }
 }
+
+
+/* ===== BEGIN: FANCLUB ===== */
+
+.fanclub-section {
+    background: linear-gradient(135deg, #000000 100%, #000000 100%);
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.fanclub-section h2 {
+    color: #fff;
+    font-weight: 700;
+}
+
+.fanclub-section p {
+    color: #d1d1d6;
+}
+
+.fanclub-section .btn-primary {
+    background-color: #6e2bf2;
+    border: none;
+    font-weight: 60;
+    padding: .2rem 1rem;
+    border-radius: 5px;
+    /* botão mais chamativo */
+    transition: all .2s ease;
+}
+
+.fanclub-section .btn-primary:hover {
+    background-color: #5822c2;
+    transform: scale(1.05);
+}
+
+
+/* ===== END: FANCLUB ===== */
+
+
+/* ===== BEGIN: STATS ===== */
+
+.stats-section {
+    background: linear-gradient(135deg, #151517 0%, #22112b 100%);
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+
+/* ===== BEGIN: STATS INLINE ===== */
+
+.stat-card {
+    flex: 1;
+    background: #121218;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: .75rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
+    transition: transform .2s ease;
+    text-align: center;
+}
+
+.stat-icon {
+    font-size: 1.4rem;
+    color: #b694ff;
+}
+
+.stat-text {
+    display: flex;
+    align-items: baseline;
+    gap: .35rem;
+    font-size: 1.2rem;
+}
+
+.stat-value .count {
+    font-weight: 800;
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.stat-label {
+    color: #d1d1d6;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: .3px;
+}
+
+
+/* ===== END: STATS INLINE ===== */
+
+
+/* ===== END: STATS ===== */
