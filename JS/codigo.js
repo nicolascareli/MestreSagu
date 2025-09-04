@@ -511,3 +511,117 @@ loadAgenda().catch(err => console.error("Erro ao carregar agenda:", err));
     io.observe(section);
 })();
 // ===== END: STATS COUNTER =====
+
+// ===== BEGIN: VENUES (loop contínuo sem gaps) =====
+(function setupVenuesMarquee() {
+    const track = document.getElementById('venuesTrack');
+    if (!track) return;
+    const wrapper = track.closest('.logos-wrapper') || track.parentElement;
+
+    // 1) mede a largura do conteúdo original
+    const originalHTML = track.innerHTML;
+    // garante que cada logo não quebre
+    track.style.whiteSpace = 'nowrap';
+
+    // aplica uma primeira duplicação
+    track.innerHTML = originalHTML + originalHTML;
+
+    // 2) duplica até que metade do trilho seja maior que a área visível (para cobrir a transição)
+    const minWidth = wrapper.clientWidth;
+    // depois de duplicar uma vez, metade do track é o conteúdo original
+    const contentWidth = () => track.scrollWidth / 2;
+    let safety = 0;
+    while (contentWidth() < minWidth && safety < 8) {
+        track.innerHTML += originalHTML; // acrescenta mais um bloco original
+        safety++;
+    }
+
+    // 3) define a distância EXATA a percorrer (largura do conteúdo original)
+    const dist = contentWidth(); // px
+    track.style.setProperty('--dist', dist + 'px');
+
+    // 4) ajusta a duração conforme quantidade de logos para uma velocidade agradável
+    const logosCount = track.querySelectorAll('.venue-logo').length / (1 + safety); // aprox. total originais
+    if (dist <= 1200) {
+        track.style.setProperty('--dur', '18s');
+    } else if (dist <= 2000) {
+        track.style.setProperty('--dur', '24s');
+    } else {
+        track.style.setProperty('--dur', '30s');
+    }
+
+    // Pausa no hover (desktop)
+    track.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
+    track.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
+})();
+
+// ===== BEGIN: VENUES – ticker contínuo via rAF (zero gaps) =====
+(function setupVenuesTicker() {
+    const track = document.getElementById('venuesTrack');
+    if (!track) return;
+    const wrapper = track.closest('.logos-wrapper') || track.parentElement;
+
+    // 1) espera as imagens carregarem para medir tudo certinho
+    const imgs = Array.from(track.querySelectorAll('img'));
+    const waitImgs = Promise.all(imgs.map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(res => img.addEventListener('load', res, { once: true }));
+    }));
+
+    waitImgs.then(() => {
+        // 2) mantém um bloco original e cria um clone para rodízio contínuo
+        const original = document.createElement('div');
+        original.className = 'venues-block';
+        original.innerHTML = track.innerHTML;
+
+        const clone = original.cloneNode(true);
+
+        // Limpa e injeta 2 blocos iguais
+        track.innerHTML = '';
+        track.appendChild(original);
+        track.appendChild(clone);
+
+        // Medidas exatas do bloco original
+        function blockWidth() { return original.getBoundingClientRect().width; }
+
+        // 3) loop: move em px/s; quando passar da largura do bloco, reseta sem pulo
+        let x = 0;
+        let last = performance.now();
+
+        // velocidade: mais rápido em desktop, mais suave no mobile
+        function currentSpeed() {
+            return window.innerWidth >= 992 ? 60 : 40; // px por segundo
+        }
+
+        let paused = false;
+        track.addEventListener('mouseenter', () => paused = true);
+        track.addEventListener('mouseleave', () => paused = false);
+
+        function tick(now) {
+            const dt = (now - last) / 1000;
+            last = now;
+            if (!paused) {
+                x -= currentSpeed() * dt;
+                const w = blockWidth();
+                if (x <= -w) x += w; // passou um bloco inteiro → reposiciona sem gap
+                track.style.transform = `translate3d(${x}px,0,0)`;
+            }
+            requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+
+        // 4) ao redimensionar, recalcula suavemente (sem “trancos”)
+        let rto;
+        window.addEventListener('resize', () => {
+            clearTimeout(rto);
+            rto = setTimeout(() => { /* só reseta a posição visualmente */
+                const w = blockWidth();
+                if (x <= -w) x += w;
+                track.style.transform = `translate3d(${x}px,0,0)`;
+            }, 120);
+        }, { passive: true });
+    });
+})();
+// ===== END: VENUES – ticker contínuo via rAF =====
+
+// ===== END: VENUES =====
